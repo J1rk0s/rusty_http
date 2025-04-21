@@ -53,7 +53,6 @@ impl HttpServer {
 
         let bytes = resp.as_bytes();
 
-        info!("Responding to client");
         stream.write_all(bytes).expect("Could not respond");
         stream.flush().unwrap();
     }
@@ -124,7 +123,7 @@ impl HttpServer {
             }
         }
 
-        warn!("File not found");
+        warn!("File {} not found", request_path);
         Err(io::Error::new(io::ErrorKind::NotFound, "File not found"))
     }
 }
